@@ -144,6 +144,8 @@
     <ClInclude Include="cube.h" />
     <ClInclude Include="Curtain.h" />
     <ClInclude Include="CurvyCube.h" />
+    <ClInclude Include="cylinder.h" />
+    <ClInclude Include="flag.h" />
     <ClInclude Include="fractal.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="railing.h" />
@@ -161,10 +163,14 @@
     <None Include="vertexShaderForPhongShading.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="bd_flag_texture.jpg" />
     <Image Include="curve_texture.jpg" />
+    <Image Include="door_texture.jpg" />
+    <Image Include="fan_texture.jpeg" />
     <Image Include="floor_texture.jpg" />
     <Image Include="red_curtain.jpg" />
     <Image Include="steel_texture.jpg" />
+    <Image Include="tree_pot_texture.jpg" />
     <Image Include="wood_texture.jpeg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

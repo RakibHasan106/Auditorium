@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\BezierCurve.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:BezierCurve.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\pointLight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:pointLight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\Curtain.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:Curtain.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\CUBE.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:CUBE.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\fractal.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{89F848AE-770F-4E5F-A59F-61FA93A7440F}|Auditorium.vcxproj|solutionrelative:fractal.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 286,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,119 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "pointLight.h",
-              "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\pointLight.h",
-              "RelativeDocumentMoniker": "pointLight.h",
-              "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\pointLight.h",
-              "RelativeToolTip": "pointLight.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAUwHUAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-21T20:24:35.892Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAHECAAAAAAAAAAAYwJACAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAALcCAAAAAAAAAAAAAL8CAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-05T21:19:16.299Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "cube.h",
-              "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\cube.h",
-              "RelativeDocumentMoniker": "cube.h",
-              "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\cube.h",
-              "RelativeToolTip": "cube.h",
-              "ViewState": "AgIAACYAAAAAAAAAAAAIwH0AAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-21T06:10:48.472Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "fractal.h",
-              "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\fractal.h",
-              "RelativeDocumentMoniker": "fractal.h",
-              "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\fractal.h",
-              "RelativeToolTip": "fractal.h",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBQAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-21T06:03:52.654Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "ee6a8817-6687-4d47-8f03-1c30b9ab134a",
-        "Display": 0,
-        "X": 302,
-        "Y": 378,
-        "Width": 688,
-        "Height": 755,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BezierCurve.h",
-              "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\BezierCurve.h",
-              "RelativeDocumentMoniker": "BezierCurve.h",
-              "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\BezierCurve.h",
-              "RelativeToolTip": "BezierCurve.h",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAAP4AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-21T12:26:50.732Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "09742a1c-f242-47b1-a728-37388838e2c7",
-        "Display": 0,
-        "X": 827,
-        "Y": 133,
-        "Width": 675,
-        "Height": 783,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Curtain.h",
-              "DocumentMoniker": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\Curtain.h",
-              "RelativeDocumentMoniker": "Curtain.h",
-              "ToolTip": "D:\\Study\\4-2\\Graphics\\LAB\\project\\Auditorium\\Auditorium\\Curtain.h",
-              "RelativeToolTip": "Curtain.h",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-21T19:20:32.506Z",
+              "WhenOpened": "2025-01-22T17:10:03.65Z",
               "EditorCaption": ""
             }
           ]

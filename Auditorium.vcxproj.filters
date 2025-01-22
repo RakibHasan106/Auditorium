@@ -62,6 +62,12 @@
     <ClInclude Include="pointLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cylinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShaderForGouraudShading.fs" />
@@ -91,6 +97,18 @@
       <Filter>Source Files</Filter>
     </Image>
     <Image Include="steel_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="door_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="tree_pot_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="bd_flag_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="fan_texture.jpeg">
       <Filter>Source Files</Filter>
     </Image>
   </ItemGroup>

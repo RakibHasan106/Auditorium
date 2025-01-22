@@ -17,6 +17,8 @@
 #include "BezierCurve.h"
 #include "CurvyCube.h"
 #include "Curtain.h"
+#include "cylinder.h"
+#include "flag.h"
 
 #include <iostream>
 
@@ -46,6 +48,10 @@ float bottom = -5.0f;
 float top = 5.0f;
 float near = 0.1f; 
 float far = 100.0f;
+
+float r = 0.0;
+
+bool fanOn = false;
 
 
 glm::mat4 myProjection(float left, float right, float bottom, float top, float near, float far) {
@@ -173,6 +179,8 @@ bool ambientToggle = true;
 bool diffuseToggle = true;
 bool specularToggle = true;
 
+bool doorOpen = false;
+
 
 // timing
 float deltaTime = 0.0f;    // time between current frame and last frame
@@ -249,8 +257,12 @@ int main()
     string floorTexturePath = "floor_texture.jpg";
     string curveTexturePath = "curve_texture.jpg";
     string woodTexturePath = "wood_texture.jpeg";
-    string curtainTexturePath = "red_curtain.jpeg";
+    string curtainTexturePath = "red_curtain.jpg";
     string steelTexturePath = "steel_texture.jpg";
+    string doorTexturePath = "door_texture.jpg";
+    string treePotTexturePath = "tree_pot_texture.jpg";
+    string bdFlagTexturePath = "bd_flag_texture.jpg";
+    string fanTexturePath = "fan_texture.jpeg";
 
     unsigned int laughEmoji = loadTexture(laughEmoPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     //unsigned int laughEmojiv2 = loadTexture(laughEmoPath.c_str(), GL_REPEAT, GL_MIRRORED_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
@@ -264,6 +276,14 @@ int main()
     unsigned int curtainTexture = loadTexture(curtainTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     
     unsigned int steelTexture = loadTexture(steelTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+
+    unsigned int doorTexture = loadTexture(doorTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+
+    unsigned int treePotTexture = loadTexture(treePotTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+
+    unsigned int bdFlagTexture = loadTexture(bdFlagTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+
+    unsigned int fanTexture = loadTexture(fanTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     
     Cube floorCube = Cube(floor_texture, floor_texture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
 
@@ -291,6 +311,18 @@ int main()
 
     //steel
     Cube steel = Cube(steelTexture, steelTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
+
+    //door
+    Cube door = Cube(doorTexture, doorTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
+
+    //Tree Pot texture cylinder
+    Cylinder treePot = Cylinder(treePotTexture, treePotTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
+
+    //wavin flag
+    Flag bdFlag = Flag(bdFlagTexture,bdFlagTexture, 32.0f,2.0f,1.0f);
+
+    //fan
+    Cube fan = Cube(fanTexture, fanTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
     
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -556,9 +588,10 @@ int main()
         floorCube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixFor2ndFloorContainer);
 
         //draw Tree using fractal
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f,0.0f,0.0f));
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(-23.0f,0.0f,4.0f));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 2.0f, 2.0f));
-        glm::mat4 modelMatrixForTree = translateMatrix * scaleMatrix;
+        glm::mat4 rotateTree = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::mat4 modelMatrixForTree = translateMatrix * scaleMatrix * rotateTree;
         tree.drawTree(lightingShader, modelMatrixForTree);
 
         //drawing railing on the second floor
@@ -622,7 +655,117 @@ int main()
         glm::mat4 translate = glm::translate(identityMatrix, glm::vec3(-10.0f, 7.0f, 0.0f));
         glm::mat4 modelForCable = translate * scale;
         drawCube(cubeVAO, lightingShader, modelForCable, 0.0f, 0.0f, 0.0f, 32.0f);
+
         
+        
+        //door
+        glm::mat4 modelForDoor = glm::mat4(1.0f);
+        if (!doorOpen) {
+            scale = glm::scale(identityMatrix, glm::vec3(0.2, 4.0, 3.0));
+            translate = glm::translate(identityMatrix, glm::vec3(-21.8f, 1.0f, 0.0f));
+            modelForDoor = translate * scale;
+        }
+        else {
+            scale = glm::scale(identityMatrix, glm::vec3(0.2, 4.0, 3.0));
+            glm::mat4 translate = glm::translate(identityMatrix, glm::vec3(-20.4f, 1.0f, -1.5f));  // Move to hinge point
+            glm::mat4 rotation = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+            modelForDoor = translate * rotation * scale;
+        }
+        door.drawCubeWithTexture(lightingShaderWithTexture, modelForDoor);
+
+
+        //floor extended ahead of the door
+
+        scale = glm::scale(identityMatrix, glm::vec3(-5.0, 0.2, 10.0));
+        translate = glm::translate(identityMatrix, glm::vec3(-22.0,-1.0, -5.0));
+        model = translate * scale;
+        drawCube(cubeVAO, lightingShader, model, 1.0, 1.0, 1.0, 32.0);
+
+        //TreePot
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(-23.0f, 0.0f, 4.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.5f, 2.0f));
+        glm::mat4 modelMatrixForTeaPot = translateMatrix * scaleMatrix;
+        treePot.drawCylinderWithTexture(lightingShaderWithTexture, modelMatrixForTeaPot);
+
+        //BdFlag
+        /*translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 2.0f, 0.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0f, 1.0f));
+        glm::mat4 modelMatrixForFlag = translateMatrix * scaleMatrix;
+        bdFlag.drawFlag(lightingShaderWithTexture, modelMatrixForFlag,currentFrame);*/
+
+
+        //FAN
+        if (fanOn)
+        {
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5f, 1.5f, 0.125f));
+            glm::mat4 translateMatrix2 = glm::translate(identityMatrix, glm::vec3(-0.2f, 0.5f, -0.125f));
+
+            // Move fan to the world center (0, 0, 0)
+            glm::mat4 translateMatrix3 = glm::translate(identityMatrix, glm::vec3(-6.0f, 4.0f, 0.0f));
+
+            // Scale matrix for the fan blades
+            glm::mat4 scaleMatrix = glm::scale(identityMatrix, glm::vec3(3.0f, 0.1f, 0.5f));
+
+            // First blade transformation
+            glm::mat4 model = translateMatrix3 * translateMatrix * glm::rotate(identityMatrix, glm::radians(r), glm::vec3(0.0f, 1.0f, 0.0f)) * translateMatrix2 * scaleMatrix;
+
+            fan.drawCubeWithTexture(lightingShaderWithTexture, model);
+            //drawCube(cubeVAO, lightingShader, model, 0.0196, 0.0157f, 0.4f, 32.0f);
+
+            // Second blade transformation (90 degrees offset)
+            model = translateMatrix3 * translateMatrix * glm::rotate(identityMatrix, glm::radians(r + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * translateMatrix2 * scaleMatrix;
+
+            fan.drawCubeWithTexture(lightingShaderWithTexture, model);
+            //drawCube(cubeVAO, lightingShader, model, 0.0196, 0.0157f, 0.4f, 32.0f);
+
+            // Fan stand (centered)
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.1f, 4.8f, 0.1f));
+            translateMatrix3 = glm::translate(identityMatrix, glm::vec3(-5.7f, 6.0f, 0.0f));
+
+            model = translateMatrix3 * scaleMatrix;
+            
+
+            drawCube(cubeVAO, lightingShader, model, 0.0f, 0.0f, 0.0f, 32.0f);
+
+            // Update rotation angle
+            r = (r + 5.0f);
+
+
+        }
+        else
+        {
+            glm::mat4 translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5f, 1.5f, 0.125f));
+            glm::mat4 translateMatrix2 = glm::translate(identityMatrix, glm::vec3(-0.2f, 0.5f, -0.125f));
+
+            // Move fan to the world center (0, 0, 0)
+            glm::mat4 translateMatrix3 = glm::translate(identityMatrix, glm::vec3(-6.0f, 4.0f, 0.0f));
+
+            // Scale matrix for the fan blades
+            glm::mat4 scaleMatrix = glm::scale(identityMatrix, glm::vec3(3.0f, 0.1f, 0.5f));
+
+            // First blade transformation
+            glm::mat4 model = translateMatrix3 * translateMatrix * glm::rotate(identityMatrix, glm::radians(r), glm::vec3(0.0f, 1.0f, 0.0f)) * translateMatrix2 * scaleMatrix;
+
+            fan.drawCubeWithTexture(lightingShaderWithTexture, model);
+            //drawCube(cubeVAO, lightingShader, model, 0.0196, 0.0157f, 0.4f, 32.0f);
+
+            // Second blade transformation (90 degrees offset)
+            model = translateMatrix3 * translateMatrix * glm::rotate(identityMatrix, glm::radians(r + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * translateMatrix2 * scaleMatrix;
+
+            //drawCube(cubeVAO, lightingShader, model, 0.0196, 0.0157f, 0.4f, 32.0f);
+            fan.drawCubeWithTexture(lightingShaderWithTexture, model);
+
+            // Fan stand (centered)
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.1f, 4.8f, 0.1f));
+            translateMatrix3 = glm::translate(identityMatrix, glm::vec3(-5.7f, 6.0f, 0.0f));
+
+            model = translateMatrix3 * scaleMatrix;
+ 
+
+            drawCube(cubeVAO, lightingShader, model, 0.0f, 0.0f, 0.0f, 32.0f);
+        }
+
 
 
         //spheretex.drawSphere(lightingShaderWithTexture, laughEmoji, modelMatrixForContainer);
@@ -748,6 +891,10 @@ void floor(unsigned int& cubeVAO, Shader& lightingShader)
     translate = glm::translate(identityMatrix, glm::vec3(4.9, -0.8, 2.0));
     model = translate * scale;
     drawCube(cubeVAO, lightingShader, model, 0.5, 0.5, 0.5, 32.0);*/
+
+    //
+
+
 }
 void chairs(unsigned int& cubeVAO, Shader& lightingShader) {
     lightingShader.use();
@@ -1002,12 +1149,35 @@ void walls(unsigned int& cubeVAO, Shader& lightingShader) {
     model = translate * scale;
     drawCube(cubeVAO, lightingShader, model, 0.5, 0.5, 0.5, 32.0);
 
-    //back wall
-    scale = glm::scale(identityMatrix, glm::vec3(0.1, 10.0, 30.0));
+    //back wall left
+    scale = glm::scale(identityMatrix, glm::vec3(0.1, 10.0, 10.0));
     translate = glm::translate(identityMatrix, glm::vec3(-22, -0.8, -15.0));
     model = translate * scale ;
+    drawCube(cubeVAO, lightingShader, model, 1.0, 1.0, 1.0, 32.0);
+
+    //back wall right
+    scale = glm::scale(identityMatrix, glm::vec3(0.1, 10.0, -10.0));
+    translate = glm::translate(identityMatrix, glm::vec3(-22, -0.8, 15.0));
+    model = translate * scale;
+    drawCube(cubeVAO, lightingShader, model, 1.0, 1.0, 1.0, 32.0);
+
+    //back wall up
+    scale = glm::scale(identityMatrix, glm::vec3(0.1, -6.3, -10.0));
+    translate = glm::translate(identityMatrix, glm::vec3(-22.0, 9.2, 5.0));
+    model = translate * scale;
     drawCube(cubeVAO, lightingShader, model, 0.5, 0.5, 0.5, 32.0);
 
+    //left down
+    scale = glm::scale(identityMatrix, glm::vec3(0.1, 5.0, -3.5));
+    translate = glm::translate(identityMatrix, glm::vec3(-22.0,-0.8, -1.5));
+    model = translate * scale;
+    drawCube(cubeVAO, lightingShader, model, 0.5, 0.5, 0.5, 32.0);
+
+    //right down
+    scale = glm::scale(identityMatrix, glm::vec3(0.1, 5.0, 3.5));
+    translate = glm::translate(identityMatrix, glm::vec3(-22.0, -0.8, 1.5));
+    model = translate * scale;
+    drawCube(cubeVAO, lightingShader, model, 0.5, 0.5, 0.5, 32.0);
 
 
 
@@ -1088,8 +1258,16 @@ void axis(unsigned int& cubeVAO, Shader& lightingShader)
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
+    
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
+        doorOpen = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS) {
+        doorOpen = false;
+    }
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
         camera.ProcessKeyboard(FORWARD, deltaTime);
@@ -1106,9 +1284,11 @@ void processInput(GLFWwindow* window)
 
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
     {
-        if (rotateAxis_X) rotateAngle_X -= 0.1;
-        else if (rotateAxis_Y) rotateAngle_Y -= 0.1;
-        else rotateAngle_Z -= 0.1;
+        fanOn = true;
+            
+    }
+    if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
+        fanOn = false;
     }
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
         camera.ProcessKeyboard(UP, deltaTime);
