@@ -102,7 +102,7 @@ private:
 
     unsigned int hollowBezier(GLfloat ctrlpoints[], int L)
     {
-        int i, j;
+        int i, j;   
         float x, y, z, r;                //current coordinates
         float theta;
         float nx, ny, nz, lengthInv;    // vertex normal

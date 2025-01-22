@@ -15,6 +15,8 @@
 #include "fractal.h"
 #include "railing.h"
 #include "BezierCurve.h"
+#include "CurvyCube.h"
+#include "Curtain.h"
 
 #include <iostream>
 
@@ -98,9 +100,10 @@ BasicCamera basic_camera(eyeX, eyeY, eyeZ, lookAtX, lookAtY, lookAtZ, V);
 // positions of the point lights
 glm::vec3 pointLightPositions[] = {
     glm::vec3(4.50f,  2.50f,  1.5f),
-    glm::vec3(4.50f,  2.50f,  -1.5f)
-    //glm::vec3(-1.5f,  1.5f,  0.0f),
-    //glm::vec3(-1.5f,  -1.5f,  0.0f)
+    glm::vec3(4.50f,  2.50f,  -1.5f),
+    glm::vec3(-10.0f, 6.8f, 0.0f),
+    glm::vec3(-10.0f, 6.8f, -1.5f),
+    glm::vec3(-10.0f, 6.8f, 1.5f),
 };
 PointLight pointlight1(
 
@@ -124,28 +127,39 @@ PointLight pointlight2(
     0.032f, //k_q
     2       // light number
 );
-//PointLight pointlight3(
-//
-//    pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z,  // position
-//    0.05f, 0.05f, 0.05f,     // ambient
-//    0.8f, 0.8f, 0.8f,     // diffuse
-//    1.0f, 1.0f, 1.0f,        // specular
-//    1.0f,   //k_c
-//    0.09f,  //k_l
-//    0.032f, //k_q
-//    3       // light number
-//);
-//PointLight pointlight4(
-//
-//    pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z,  // position
-//    0.05f, 0.05f, 0.05f,     // ambient
-//    0.8f, 0.8f, 0.8f,     // diffuse
-//    1.0f, 1.0f, 1.0f,        // specular
-//    1.0f,   //k_c
-//    0.09f,  //k_l
-//    0.032f, //k_q
-//    4       // light number
-//);
+PointLight pointlight3(
+
+    pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z,  // position
+    0.05f, 0.05f, 0.05f,     // ambient
+    0.8f, 0.8f, 0.8f,     // diffuse
+    1.0f, 1.0f, 1.0f,        // specular
+    1.0f,   //k_c
+    0.09f,  //k_l
+    0.032f, //k_q
+    3       // light number
+);
+PointLight pointlight4(
+
+    pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z,  // position
+    0.05f, 0.05f, 0.05f,     // ambient
+    0.8f, 0.8f, 0.8f,     // diffuse
+    1.0f, 1.0f, 1.0f,        // specular
+    1.0f,   //k_c
+    0.09f,  //k_l
+    0.032f, //k_q
+    4       // light number
+);
+PointLight pointlight5(
+
+    pointLightPositions[4].x, pointLightPositions[4].y, pointLightPositions[4].z,  // position
+    0.05f, 0.05f, 0.05f,     // ambient
+    0.8f, 0.8f, 0.8f,     // diffuse
+    1.0f, 1.0f, 1.0f,        // specular
+    1.0f,   //k_c
+    0.09f,  //k_l
+    0.032f, //k_q
+    4       // light number
+);
 
 
 // light settings
@@ -234,6 +248,9 @@ int main()
     string laughEmoPath = "icon.png";
     string floorTexturePath = "floor_texture.jpg";
     string curveTexturePath = "curve_texture.jpg";
+    string woodTexturePath = "wood_texture.jpeg";
+    string curtainTexturePath = "red_curtain.jpeg";
+    string steelTexturePath = "steel_texture.jpg";
 
     unsigned int laughEmoji = loadTexture(laughEmoPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     //unsigned int laughEmojiv2 = loadTexture(laughEmoPath.c_str(), GL_REPEAT, GL_MIRRORED_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
@@ -242,7 +259,15 @@ int main()
 
     unsigned int curveTexture = loadTexture(curveTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     
+    unsigned int woodTexture = loadTexture(woodTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    
+    unsigned int curtainTexture = loadTexture(curtainTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    
+    unsigned int steelTexture = loadTexture(steelTexturePath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    
     Cube floorCube = Cube(floor_texture, floor_texture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
+
+    //Cube CurtainHolderCube = Cube(woodTexture, woodTexture, )
 
 
 
@@ -255,6 +280,17 @@ int main()
     //Railing on the second floor
     Railing railing = Railing();
 
+    //Curvy Cube
+    CurvyCube curvyCube = CurvyCube(woodTexture, woodTexture,32.0f,0.0f,0.0f,2.0f,2.0f );
+
+    //Curtain Holder
+    Cube curtainHolderCube = Cube(woodTexture, woodTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
+
+    //Curtain
+    Curtain curtain = Curtain(curtainTexture);
+
+    //steel
+    Cube steel = Cube(steelTexture, steelTexture, 32.0f, 0.0f, 0.0f, 2.0f, 2.0f);
     
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -418,9 +454,11 @@ int main()
         // point light 2
         pointlight2.setUpPointLight(lightingShader);
         // point light 3
-        //pointlight3.setUpPointLight(lightingShader);
+        pointlight3.setUpPointLight(lightingShader);
         // point light 4
-        //pointlight4.setUpPointLight(lightingShader);
+        pointlight4.setUpPointLight(lightingShader);
+
+        pointlight5.setUpPointLight(lightingShader);
 
         // activate shader
         lightingShader.use();
@@ -488,11 +526,14 @@ int main()
         lightingShaderWithTexture.use();
         pointlight1.setUpPointLight(lightingShaderWithTexture);
         pointlight2.setUpPointLight(lightingShaderWithTexture);
+        pointlight3.setUpPointLight(lightingShaderWithTexture);
+        pointlight4.setUpPointLight(lightingShaderWithTexture);
+        pointlight5.setUpPointLight(lightingShaderWithTexture);
 
         glm::mat4 modelMatrixForContainer = glm::mat4(1.0f);
         //modelMatrixForContainer = glm::translate(modelMatrixForContainer, glm::vec3(4.87f, 2.5f, 0.1f)) * glm::scale(identityMatrix, glm::vec3(0.0f,1.0f,1.5f));
-        modelMatrixForContainer = glm::translate(modelMatrixForContainer, glm::vec3(2.0f, 2.5f, 0.1f));
-        cube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForContainer);
+        /*modelMatrixForContainer = glm::translate(modelMatrixForContainer, glm::vec3(2.0f, 2.5f, 0.1f));
+        cube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForContainer);*/
 
         
         //1st floor
@@ -529,10 +570,60 @@ int main()
 
 
         //roof
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0f, 1.0f));
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(-7.0f, 2.1f, 0.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(30.0f, 5.0f, 30.0f));
         glm::mat4 modelMatrixForRoof = translateMatrix * scaleMatrix;
-        bezierCurve.drawBezierCurve(lightingShader, modelMatrixForRoof);
+        bezierCurve.drawBezierCurve(lightingShaderWithTexture, modelMatrixForRoof);
+
+        
+
+        //curvyObject
+        /*translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0f, 2.0f, 0.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(10.0f, 2.0f, 4.0f));
+        glm::mat4 modelMatrixForCurvyObj = translateMatrix * scaleMatrix;
+        curvyCube.draw(lightingShaderWithTexture, modelMatrixForCurvyObj);*/
+
+        //CurtainHolder left
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(4.5f, 1.4f, -3.7f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 7.0f, 0.5f));
+        glm::mat4 modelMatrixForCurtainHolder = translateMatrix * scaleMatrix;
+        curtainHolderCube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForCurtainHolder);
+
+        //CurtainHolder up
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(2.8f, 5.0f,0.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(4.0f, 0.5f, 8.0f));
+        modelMatrixForCurtainHolder = translateMatrix * scaleMatrix;
+        curtainHolderCube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForCurtainHolder);
+
+        //CurtainHolder Right
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(4.5f, 1.4f, 3.7f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 7.0f, 0.5f));
+        modelMatrixForCurtainHolder = translateMatrix * scaleMatrix;
+        curtainHolderCube.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForCurtainHolder);
+
+
+        //Curtain
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(4.5f, 2.4f, -3.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.5f, 1.0f));
+        glm::mat4 modelMatrixForCurtain = translateMatrix * scaleMatrix;
+        curtain.draw(lightingShaderWithTexture, modelMatrixForCurtain);
+
+        //curtain right
+
+        //steel bar for light
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(-10.0f, 7.0f, 0.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 0.2f, 4.0f));
+        glm::mat4 modelMatrixForSteel = translateMatrix * scaleMatrix;
+        steel.drawCubeWithTexture(lightingShaderWithTexture, modelMatrixForSteel);
+
+
+        //power cable for steel 1
+        glm::mat4 scale = glm::scale(identityMatrix, glm::vec3(0.1, 3.5, 0.1));
+        glm::mat4 translate = glm::translate(identityMatrix, glm::vec3(-10.0f, 7.0f, 0.0f));
+        glm::mat4 modelForCable = translate * scale;
+        drawCube(cubeVAO, lightingShader, modelForCable, 0.0f, 0.0f, 0.0f, 32.0f);
+        
+
 
         //spheretex.drawSphere(lightingShaderWithTexture, laughEmoji, modelMatrixForContainer);
 
@@ -563,7 +654,7 @@ int main()
 
         // we now draw as many light bulbs as we have point lights.
         glBindVertexArray(lightCubeVAO);
-        for (unsigned int i = 0; i < 2; i++)
+        for (unsigned int i = 0; i < 5; i++)
         {
             model = glm::mat4(1.0f);
             model = glm::translate(model, pointLightPositions[i]);

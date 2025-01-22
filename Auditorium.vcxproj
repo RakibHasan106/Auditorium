@@ -142,7 +142,10 @@
     <ClInclude Include="C:\Users\ADNAN\Desktop\Auditorium\Auditorium\stb_image.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
+    <ClInclude Include="Curtain.h" />
+    <ClInclude Include="CurvyCube.h" />
     <ClInclude Include="fractal.h" />
+    <ClInclude Include="pointLight.h" />
     <ClInclude Include="railing.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="sphere.h" />
@@ -160,6 +163,9 @@
   <ItemGroup>
     <Image Include="curve_texture.jpg" />
     <Image Include="floor_texture.jpg" />
+    <Image Include="red_curtain.jpg" />
+    <Image Include="steel_texture.jpg" />
+    <Image Include="wood_texture.jpeg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

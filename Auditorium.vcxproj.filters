@@ -53,6 +53,15 @@
     <ClInclude Include="BezierCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CurvyCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Curtain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShaderForGouraudShading.fs" />
@@ -73,6 +82,15 @@
       <Filter>Source Files</Filter>
     </Image>
     <Image Include="curve_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="wood_texture.jpeg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="red_curtain.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="steel_texture.jpg">
       <Filter>Source Files</Filter>
     </Image>
   </ItemGroup>
