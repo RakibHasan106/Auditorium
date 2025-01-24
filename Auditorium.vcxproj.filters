@@ -111,5 +111,8 @@
     <Image Include="fan_texture.jpeg">
       <Filter>Source Files</Filter>
     </Image>
+    <Image Include="tactile_texture.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

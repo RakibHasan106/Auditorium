@@ -777,7 +777,7 @@ int main()
         //bed(cubeVAO, lightingShader, model);
         //draw floor
         //floor(cubeVAO, lightingShader);
-        axis(cubeVAO, lightingShader);
+        //axis(cubeVAO, lightingShader);
         frontWall(cubeVAO, lightingShader);
         chairs(cubeVAO, lightingShader);
         walls(cubeVAO, lightingShader);
@@ -1484,16 +1484,18 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         {
             pointlight1.turnOff();
             pointlight2.turnOff();
-            //pointlight3.turnOff();
-            //pointlight4.turnOff();
+            pointlight3.turnOff();
+            pointlight4.turnOff();
+            pointlight5.turnOff();
             pointLightOn = !pointLightOn;
         }
         else
         {
             pointlight1.turnOn();
             pointlight2.turnOn();
-            //pointlight3.turnOn();
-            //pointlight4.turnOn();
+            pointlight3.turnOn();
+            pointlight4.turnOn();
+            pointlight5.turnOn();
             pointLightOn = !pointLightOn;
         }
     }

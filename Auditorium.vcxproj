@@ -170,6 +170,7 @@
     <Image Include="floor_texture.jpg" />
     <Image Include="red_curtain.jpg" />
     <Image Include="steel_texture.jpg" />
+    <Image Include="tactile_texture.jpg" />
     <Image Include="tree_pot_texture.jpg" />
     <Image Include="wood_texture.jpeg" />
   </ItemGroup>
