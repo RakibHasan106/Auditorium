@@ -4,7 +4,9 @@
 This project is a 3D virtual auditorium simulation built using OpenGL, GLFW, and GLM. It demonstrates advanced computer graphics techniques, including procedural generation, interactive elements, and realistic lighting. The scene includes a main hall, seating arrangements, a stage, a second-floor balcony, and dynamic components like rotating fans and interactive doors.
 
 
-project [video](https://youtu.be/HnwnZD2MCEs?si=MmbQjxUY69W_cA_4)[report](https://drive.google.com/file/d/1x0qOlZ7DTbgnkuJnFqrU2YpvXDEpx-XH/view?usp=sharing)[presentation](https://docs.google.com/presentation/d/1fqUp17Vv382MAAyRAIplRBhUSdO33WJW/edit?usp=sharing&ouid=105724486781482342064&rtpof=true&sd=true)
+project : [video](https://youtu.be/HnwnZD2MCEs?si=MmbQjxUY69W_cA_4)
+|| [report](https://drive.google.com/file/d/1x0qOlZ7DTbgnkuJnFqrU2YpvXDEpx-XH/view?usp=sharing)
+|| [presentation](https://docs.google.com/presentation/d/1fqUp17Vv382MAAyRAIplRBhUSdO33WJW/edit?usp=sharing&ouid=105724486781482342064&rtpof=true&sd=true)
 
 
 ## Features
